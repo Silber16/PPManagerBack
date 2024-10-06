@@ -22,12 +22,6 @@ namespace PPManager.Controllers
             return View(notes);
         }
 
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]Note note)
         {

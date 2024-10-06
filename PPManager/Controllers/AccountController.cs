@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PPManager.Models;
 using PPManager.ViewModels;
+using System.Security.Claims;
 
 
 namespace PPManager.Controllers
@@ -84,19 +85,54 @@ namespace PPManager.Controllers
             return BadRequest();
         }
 
-        [HttpGet("/Account/CheckAuth")]
-        public IActionResult CheckAuth()
+        [HttpPost("/Account/LogOut")]
+        public async Task<IActionResult> OnPost()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return Ok(new { isAuthenticated = true });
-            }
-            else
-            {
-                return Ok(new { isAuthenticated = false });
-            }
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
+
+            return Ok(); ;
         }
 
+        [HttpGet("/Account/CheckAuth")]
+        public IActionResult CheckAuth()
+            {
+                if (User.Identity.IsAuthenticated)
+                {
+                    return Ok(new { isAuthenticated = true });
+                }
+                else
+                {
+                    return Ok(new { isAuthenticated = false });
+                }
+
+            }
+
+        [HttpGet("/Account/GetUserInfo")]
+        public async Task<IActionResult> GetUserInfo()
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                if (userId != null)
+                {
+                    var user = await _userManager.FindByIdAsync(userId);
+
+                    if (user == null)
+                    {
+                        return NotFound();
+                    }
+
+                    var userData = new
+                    {
+                        user.UserName
+                    };
+
+                    return Ok(userData);
+                }
+
+                return NotFound("User ID not found");
+                   
+            }
 
     }
 }

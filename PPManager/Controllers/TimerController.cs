@@ -41,7 +41,7 @@ namespace PPManager.Controllers
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet("/Timer/WeekTimerUse")]
         public async Task<IActionResult> WeekTimerUse()
         {
             var oneWeekAgo = DateTime.Now.AddDays(-5);

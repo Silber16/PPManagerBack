@@ -28,7 +28,7 @@ namespace PPManager.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
+        [HttpPost("api/Account/Register")]
         public async Task<IActionResult> Register([FromBody] RegisterDTO RegisterInput)
         {
             if (!ModelState.IsValid)
@@ -59,7 +59,7 @@ namespace PPManager.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPost]
+        [HttpPost("/api/Account/Login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO loginInput, string? returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -85,7 +85,7 @@ namespace PPManager.Controllers
             return BadRequest();
         }
 
-        [HttpPost("/Account/LogOut")]
+        [HttpPost("/api/Account/LogOut")]
         public async Task<IActionResult> OnPost()
         {
             await _signInManager.SignOutAsync();
@@ -94,7 +94,7 @@ namespace PPManager.Controllers
             return Ok(); ;
         }
 
-        [HttpGet("/Account/CheckAuth")]
+        [HttpGet("/api/Account/CheckAuth")]
         public IActionResult CheckAuth()
             {
                 if (User.Identity.IsAuthenticated)
@@ -108,7 +108,7 @@ namespace PPManager.Controllers
 
             }
 
-        [HttpGet("/Account/GetUserInfo")]
+        [HttpGet("/api/Account/GetUserInfo")]
         public async Task<IActionResult> GetUserInfo()
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

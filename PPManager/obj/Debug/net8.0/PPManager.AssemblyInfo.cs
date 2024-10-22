@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PPManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+212470e9556e84e1775d6dd1962e4080ac635de3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86f609897e248a481b61c3d00afb33b679f730e5")]
 [assembly: System.Reflection.AssemblyProductAttribute("PPManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PPManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

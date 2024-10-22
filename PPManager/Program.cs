@@ -29,7 +29,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "AllowSpecificOrigin",
                       policy =>
                       {
-                          policy.WithOrigins("https://ppmanagerfront.onrender.com", "https://proud-glacier-09882b50f.5.azurestaticapps.net")
+                          policy.WithOrigins("https://ppmanagerfront.onrender.com", "https://projectpilot.azurewebsites.net", "https://proud-glacier-09882b50f.5.azurestaticapps.net")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod()
                                 .AllowCredentials();
